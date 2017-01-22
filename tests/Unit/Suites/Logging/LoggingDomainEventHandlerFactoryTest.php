@@ -44,7 +44,7 @@ use LizardsAndPumpkins\Util\Factory\SampleMasterFactory;
  * @uses   \LizardsAndPumpkins\Import\Price\PriceSnippetRenderer
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductSearchResultMetaSnippetRenderer
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingSnippetRenderer
- * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingTemplateProjector
+ * @uses   \LizardsAndPumpkins\ProductListing\Import\RootTemplateProjector
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingSnippetProjector
  * @uses   \LizardsAndPumpkins\ProductListing\ProductListingWasAddedDomainEventHandler
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingTitleSnippetRenderer

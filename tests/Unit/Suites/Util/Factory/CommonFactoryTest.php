@@ -35,7 +35,6 @@ use LizardsAndPumpkins\Import\Image\ImageWasAddedDomainEvent;
 use LizardsAndPumpkins\Import\Image\ImageWasAddedDomainEventHandler;
 use LizardsAndPumpkins\Import\ImageStorage\ImageProcessing\ImageProcessorCollection;
 use LizardsAndPumpkins\Import\ImageStorage\MediaBaseUrlBuilder;
-use LizardsAndPumpkins\Import\Price\PriceSnippetRenderer;
 use LizardsAndPumpkins\Import\Product\Image\ProductImageImportCommandLocator;
 use LizardsAndPumpkins\Import\Product\Image\ProductImageList;
 use LizardsAndPumpkins\Import\Product\Listing\ProductListingImportCommandLocator;
@@ -55,7 +54,6 @@ use LizardsAndPumpkins\Import\Product\UpdateProductCommandHandler;
 use LizardsAndPumpkins\Import\Product\UrlKey\UrlKeyForContextCollector;
 use LizardsAndPumpkins\Import\RootTemplate\TemplateWasUpdatedDomainEvent;
 use LizardsAndPumpkins\Import\RootTemplate\TemplateWasUpdatedDomainEventHandler;
-use LizardsAndPumpkins\Import\SnippetRenderer;
 use LizardsAndPumpkins\Import\Tax\ProductTaxClass;
 use LizardsAndPumpkins\Logging\Logger;
 use LizardsAndPumpkins\Logging\ProcessTimeLoggingCommandHandlerDecorator;
@@ -72,17 +70,14 @@ use LizardsAndPumpkins\Messaging\Queue;
 use LizardsAndPumpkins\ProductDetail\Import\ConfigurableProductJsonSnippetRenderer;
 use LizardsAndPumpkins\ProductDetail\ProductCanonicalTagSnippetRenderer;
 use LizardsAndPumpkins\ProductDetail\ProductDetailPageRobotsMetaTagSnippetRenderer;
-use LizardsAndPumpkins\ProductDetail\ProductDetailViewSnippetRenderer;
 use LizardsAndPumpkins\ProductListing\AddProductListingCommand;
 use LizardsAndPumpkins\ProductListing\AddProductListingCommandHandler;
 use LizardsAndPumpkins\ProductListing\Import\ProductListing;
 use LizardsAndPumpkins\ProductListing\Import\ProductListingBuilder;
 use LizardsAndPumpkins\ProductListing\Import\ProductListingDescriptionSnippetRenderer;
 use LizardsAndPumpkins\ProductListing\Import\ProductListingRobotsMetaTagSnippetRenderer;
-use LizardsAndPumpkins\ProductListing\Import\ProductListingSnippetRenderer;
 use LizardsAndPumpkins\ProductListing\Import\ProductListingTitleSnippetRenderer;
 use LizardsAndPumpkins\ProductListing\Import\TemplateRendering\ProductListingDescriptionBlockRenderer;
-use LizardsAndPumpkins\ProductListing\ProductInListingSnippetRenderer;
 use LizardsAndPumpkins\ProductListing\ProductListingWasAddedDomainEvent;
 use LizardsAndPumpkins\ProductListing\ProductListingWasAddedDomainEventHandler;
 use LizardsAndPumpkins\ProductSearch\Import\AttributeValueCollectorLocator;
@@ -125,7 +120,7 @@ use LizardsAndPumpkins\Util\Factory\Exception\UndefinedFactoryMethodException;
  * @uses   \LizardsAndPumpkins\Import\Product\ProductProjector
  * @uses   \LizardsAndPumpkins\ProductDetail\ProductDetailViewSnippetRenderer
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingSnippetRenderer
- * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingTemplateProjector
+ * @uses   \LizardsAndPumpkins\ProductListing\Import\RootTemplateProjector
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingSnippetProjector
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingBuilder
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingTitleSnippetRenderer
@@ -819,65 +814,6 @@ class CommonFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $result = $this->commonFactory->createProductListingCanonicalTagSnippetKeyGenerator();
         $this->assertInstanceOf(SnippetKeyGenerator::class, $result);
-    }
-
-    /**
-     * @dataProvider productListSnippetRenderersProvider
-     */
-    public function testContainsProductListingPageSnippetRenderersInSnippetRendererList(string $expected)
-    {
-        $found = array_reduce(
-            $this->commonFactory->createProductListingSnippetRendererList(),
-            function ($found, SnippetRenderer $snippetRenderer) use ($expected) {
-                return $found || is_a($snippetRenderer, $expected);
-            }
-        );
-        $message = sprintf('SnippetRenderer "%s" not found in product listing snippet renderer list', $expected);
-        $this->assertTrue($found, $message);
-    }
-
-    /**
-     * @return array[]
-     */
-    public function productListSnippetRenderersProvider() : array
-    {
-        return [
-            [ProductListingDescriptionSnippetRenderer::class],
-            [ProductListingTitleSnippetRenderer::class],
-            [ProductListingSnippetRenderer::class],
-            [ProductListingRobotsMetaTagSnippetRenderer::class],
-        ];
-    }
-
-    /**
-     * @dataProvider productSnippetRenderersProvider
-     */
-    public function testContainsProductSnippetRenderersInSnippetRendererList(string $expected)
-    {
-        $found = array_reduce(
-            $this->commonFactory->createProductDetailPageSnippetRendererList(),
-            function ($found, SnippetRenderer $snippetRenderer) use ($expected) {
-                return $found || is_a($snippetRenderer, $expected);
-            }
-        );
-        $message = sprintf('SnippetRenderer "%s" not found in product detail snippet renderer list', $expected);
-        $this->assertTrue($found, $message);
-    }
-
-    /**
-     * @return array[]
-     */
-    public function productSnippetRenderersProvider() : array
-    {
-        return [
-            [ProductDetailViewSnippetRenderer::class],
-            [ProductInListingSnippetRenderer::class],
-            [PriceSnippetRenderer::class],
-            [ProductJsonSnippetRenderer::class],
-            [ConfigurableProductJsonSnippetRenderer::class],
-            [ProductCanonicalTagSnippetRenderer::class],
-            [ProductDetailPageRobotsMetaTagSnippetRenderer::class],
-        ];
     }
 
     public function testItReturnsAProductListingDescriptionBlockRenderer()

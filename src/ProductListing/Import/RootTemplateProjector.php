@@ -8,7 +8,7 @@ use LizardsAndPumpkins\DataPool\DataPoolWriter;
 use LizardsAndPumpkins\Import\Projector;
 use LizardsAndPumpkins\Import\SnippetRendererCollection;
 
-class ProductListingTemplateProjector implements Projector
+class RootTemplateProjector implements Projector
 {
     /**
      * @var SnippetRendererCollection

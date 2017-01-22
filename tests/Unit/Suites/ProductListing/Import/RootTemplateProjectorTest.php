@@ -9,9 +9,9 @@ use LizardsAndPumpkins\Import\Projector;
 use LizardsAndPumpkins\Import\SnippetRendererCollection;
 
 /**
- * @covers \LizardsAndPumpkins\ProductListing\Import\ProductListingTemplateProjector
+ * @covers \LizardsAndPumpkins\ProductListing\Import\RootTemplateProjector
  */
-class ProductListingTemplateProjectorTest extends \PHPUnit_Framework_TestCase
+class RootTemplateProjectorTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var DataPoolWriter|\PHPUnit_Framework_MockObject_MockObject
@@ -19,11 +19,11 @@ class ProductListingTemplateProjectorTest extends \PHPUnit_Framework_TestCase
     private $mockDataPoolWriter;
 
     /**
-     * @var ProductListingTemplateProjector
+     * @var RootTemplateProjector
      */
     private $projector;
 
-    protected function setUp()
+    final protected function setUp()
     {
         /** @var SnippetRendererCollection|\PHPUnit_Framework_MockObject_MockObject $stubSnippetRendererCollection */
         $stubSnippetRendererCollection = $this->createMock(SnippetRendererCollection::class);
@@ -31,10 +31,7 @@ class ProductListingTemplateProjectorTest extends \PHPUnit_Framework_TestCase
 
         $this->mockDataPoolWriter = $this->createMock(DataPoolWriter::class);
 
-        $this->projector = new ProductListingTemplateProjector(
-            $stubSnippetRendererCollection,
-            $this->mockDataPoolWriter
-        );
+        $this->projector = new RootTemplateProjector($stubSnippetRendererCollection, $this->mockDataPoolWriter);
     }
 
     public function testProjectorInterfaceIsImplemented()
