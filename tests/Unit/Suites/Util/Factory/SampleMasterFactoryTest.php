@@ -57,8 +57,8 @@ class SampleMasterFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCallsACallbackMethodOnRegisteredFactoryWithACallback()
     {
-        /** @var StubFactoryWithCallback|\PHPUnit_Framework_MockObject_MockObject $mockFactoryWithCallback */
-        $mockFactoryWithCallback = $this->createMock(StubFactoryWithCallback::class);
+        /** @var FactoryWithCallback|Factory|\PHPUnit_Framework_MockObject_MockObject $mockFactoryWithCallback */
+        $mockFactoryWithCallback = $this->getMockBuilder([Factory::class, FactoryWithCallback::class])->getMock();
         $mockFactoryWithCallback->expects($this->once())->method('factoryRegistrationCallback')
             ->with($this->sampleMasterFactory);
 
