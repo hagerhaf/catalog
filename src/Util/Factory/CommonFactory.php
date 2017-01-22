@@ -1117,10 +1117,7 @@ class CommonFactory implements Factory, DomainEventHandlerFactory, CommandHandle
     public function createMediaBaseUrlBuilder() : MediaBaseUrlBuilder
     {
         $mediaBaseUrlPath = 'media/';
-        return new MediaDirectoryBaseUrlBuilder(
-            $this->getMasterFactory()->createBaseUrlBuilder(),
-            $mediaBaseUrlPath
-        );
+        return new MediaDirectoryBaseUrlBuilder($this->getMasterFactory()->createBaseUrlBuilder(), $mediaBaseUrlPath);
     }
 
     public function createAttributeValueCollectorLocator() : AttributeValueCollectorLocator
