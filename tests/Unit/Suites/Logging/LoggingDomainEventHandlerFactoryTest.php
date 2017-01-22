@@ -37,6 +37,7 @@ use LizardsAndPumpkins\Util\Factory\SampleMasterFactory;
  * @covers \LizardsAndPumpkins\Logging\LoggingDomainEventHandlerFactory
  * @uses   \LizardsAndPumpkins\Import\Product\AttributeCode
  * @uses   \LizardsAndPumpkins\Import\Product\ProductProjector
+ * @uses   \LizardsAndPumpkins\Import\RootTemplate\Import\RootTemplateProjector
  * @uses   \LizardsAndPumpkins\ProductListing\ProductInListingSnippetRenderer
  * @uses   \LizardsAndPumpkins\ProductSearch\Import\ProductSearchDocumentBuilder
  * @uses   \LizardsAndPumpkins\ProductSearch\Import\AttributeValueCollectorLocator
@@ -44,7 +45,6 @@ use LizardsAndPumpkins\Util\Factory\SampleMasterFactory;
  * @uses   \LizardsAndPumpkins\Import\Price\PriceSnippetRenderer
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductSearchResultMetaSnippetRenderer
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingSnippetRenderer
- * @uses   \LizardsAndPumpkins\ProductListing\Import\RootTemplateProjector
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingSnippetProjector
  * @uses   \LizardsAndPumpkins\ProductListing\ProductListingWasAddedDomainEventHandler
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingTitleSnippetRenderer

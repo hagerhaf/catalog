@@ -118,9 +118,9 @@ use LizardsAndPumpkins\Util\Factory\Exception\UndefinedFactoryMethodException;
  * @uses   \LizardsAndPumpkins\Import\Product\AttributeCode
  * @uses   \LizardsAndPumpkins\Import\Price\PriceSnippetRenderer
  * @uses   \LizardsAndPumpkins\Import\Product\ProductProjector
+ * @uses   \LizardsAndPumpkins\Import\RootTemplate\Import\RootTemplateProjector
  * @uses   \LizardsAndPumpkins\ProductDetail\ProductDetailViewSnippetRenderer
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingSnippetRenderer
- * @uses   \LizardsAndPumpkins\ProductListing\Import\RootTemplateProjector
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingSnippetProjector
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingBuilder
  * @uses   \LizardsAndPumpkins\ProductListing\Import\ProductListingTitleSnippetRenderer

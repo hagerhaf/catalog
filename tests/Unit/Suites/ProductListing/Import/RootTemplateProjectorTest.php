@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace LizardsAndPumpkins\ProductListing\Import;
+namespace LizardsAndPumpkins\Import\RootTemplate\Import;
 
 use LizardsAndPumpkins\DataPool\DataPoolWriter;
 use LizardsAndPumpkins\Import\Projector;
 use LizardsAndPumpkins\Import\SnippetRendererCollection;
 
 /**
- * @covers \LizardsAndPumpkins\ProductListing\Import\RootTemplateProjector
+ * @covers \LizardsAndPumpkins\Import\RootTemplate\Import\RootTemplateProjector
  */
 class RootTemplateProjectorTest extends \PHPUnit_Framework_TestCase
 {
